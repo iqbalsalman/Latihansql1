@@ -90,10 +90,8 @@ select
            employees e
            join departments d 
            on (e.department_id=d.department_id)
-           where d.department_id in (lower('it_prog'))
-           and max(e.salary)
-            group by e.salary
-           having max(e.salary)>= min(e.salary)
+           where e.job_id='IT_PROG'
+           group by e.employee_id,d.department_id
            order by e.salary desc, max(e.salary) desc 
 
 
