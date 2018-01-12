@@ -82,6 +82,18 @@ from
        and j.job_id=k.jabatan
        and d.department_id=k.bagian
 
+select
+      k.nama_lengkap,e.first_name||' '||e.last_name as "Nama",
+      j.job_title,l.street_address||' ,'||l.city AS "cocat",
+      d.department_name
+from 
+      karyawan_tdi k join jobs j on (k.jabatan=j.job_id)
+      join locations l on (k.alamat_rumah=l.location_id)
+      join employees e on (j.job_id=e.job_id)
+      join departments d on (e.department_id=e.department_id)
+      where e.job_id='IT_PROG'
+
+
 
 
        
