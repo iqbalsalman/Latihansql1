@@ -5,7 +5,7 @@
 SELECT e.employee_id AS "Kode Karyawan",e.first_name||' '||e.last_name AS "Nama Lengkap"
 , d.department_name "Nama Department", 
 salary "Gaji Bulanan",
-	CASE  WHEN
+  CASE  WHEN
         e.commission_pct IS NULL
            THEN  'Tidak Memiliki komisi'
         ELSE
@@ -14,11 +14,11 @@ salary "Gaji Bulanan",
          to_char(e.commission_pct+e.salary+e.salary,'999,99.0') AS "Gajih di Terima" 
 
    from
-	  employees
-	  e join departments d on
-	  (e.department_id=d.department_id)
-	  where e.commission_pct is not Null or e.commission_pct is null
-   group by e.first_name,e.last_name,d.department_name,e.salary,commission_pct
+    employees
+    e join departments d on
+    (e.department_id=d.department_id)
+    where e.commission_pct is not Null or e.commission_pct is null
+   group by e.first_name,e.last_name,d.department_name,e.salary,commission_pct,e.employee_id
    order by e.salary asc
 
 

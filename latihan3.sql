@@ -48,6 +48,19 @@ REFERENCES departments(department_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 
+select k.kode_karyawan,nama_lengkap,l.street_address||' ,'||l.city AS "Alamat Rumah"
+       ,l.street_address||' ,'||l.city AS "Alamat Domisil",d.department_name,j.job_title
+from 
+       karyawan_tdi k 
+       join locations l on (k.alamat_rumah=l.location_id)
+       join jobs j on (k.jabatan=job_id)
+       join departments d on (k.bagian=department_id)
+       where k.alamat_rumah=l.location_id 
+       and l.location_id=alamat_domisili
+
+
+
+
 
 
 insert into  karyawan_tdi values(2,'Dimas Maryanto',6232,6230,'IT_PROG',60);
@@ -55,3 +68,20 @@ insert into karyawan_tdi values(3,'Hari Sapto',6233,6233,'IT_PROG',60);
 insert into karyawan_tdi values(4,'Hari Sapto Adi',6220,6220,'IT_PROG',60);
 insert into karyawan_tdi values(5,'Arip Permana',6233,6233,'AD_PRES',90);
 insert into karyawan_tdi values(6,'Zera',6233,6233,'HR_REP',10);
+
+
+select k.kode_karyawan,nama_lengkap,l.street_address||' ,'||l.city AS "Alamat Rumah"
+       ,l.street_address||' ,'||l.city AS "Alamat Domisil",d.department_name,j.job_title
+from 
+       karyawan_tdi k 
+       inner join locations l on (k.alamat_rumah=l.location_id)
+       inner join jobs j on (k.jabatan=job_id)
+       inner join departments d on (k.bagian=department_id)
+       where k.alamat_rumah=l.location_id 
+       and l.location_id=alamat_domisili
+       and j.job_id=k.jabatan
+       and d.department_id=k.bagian
+
+
+
+       
